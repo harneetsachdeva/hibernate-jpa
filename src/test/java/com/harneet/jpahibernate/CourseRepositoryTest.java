@@ -21,10 +21,19 @@ public class CourseRepositoryTest {
     private CourseRepository repository;
 
     @Test
-    public void contextLoads() {
+    public void findByIdTest() {
         Course course = repository.findById(10001L);
         Assert.assertEquals("JPA in 50 Steps",course.getName());
         logger.info("Course 10001 -> {}", course);
+    }
+
+    @Test
+    public void deleteByIdTest() {
+        repository.deleteById(10001L);
+        Course course = repository.findById(10001L);
+        logger.info("Course 10001 -> {} removed", course);
+        Assert.assertEquals(null,course);
+        logger.info("Course 10001 -> {} removed", course);
     }
 
 }

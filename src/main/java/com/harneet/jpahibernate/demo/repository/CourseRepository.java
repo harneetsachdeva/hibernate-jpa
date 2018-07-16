@@ -5,10 +5,11 @@ import javax.persistence.EntityManager;
 import com.harneet.jpahibernate.demo.entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository
+@Transactional
 public class CourseRepository {
 
     @Autowired
@@ -20,6 +21,9 @@ public class CourseRepository {
 
     //public Course save(Course course) -> insert or update
 
-    //public void deleteById(Long id)
+    public void deleteById(Long id){
+        Course course = findById(id);
+        em.remove(course);
+    }
 
 }
